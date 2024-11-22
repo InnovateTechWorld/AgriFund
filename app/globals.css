@@ -64,6 +64,20 @@
     --input: 150 30% 22%;
     --ring: 142 76% 40%;
   }
+
+  /* Optimize font loading */
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
+    src: url('/fonts/inter.woff2') format('woff2');
+  }
+
+  /* Add preload for critical assets */
+  head {
+    link[rel="preload"][as="font"] {
+      crossorigin: anonymous;
+    }
+  }
 }
 
 @layer base {
@@ -79,18 +93,18 @@
 .gradient-green {
   background: linear-gradient(
     135deg,
-    hsl(150 30% 98%) 0%,
-    hsl(142 50% 88%) 50%,
-    hsl(142 76% 25% / 0.1) 100%
+    hsl(var(--primary) / 0.1) 0%,
+    hsl(var(--primary) / 0.1) 50%,
+    hsl(var(--primary) / 0.1) 100%
   );
 }
 
 .dark .gradient-green {
   background: linear-gradient(
     135deg,
-    hsl(150 50% 2%) 0%,
-    hsl(142 50% 18%) 50%,
-    hsl(142 76% 40% / 0.1) 100%
+    hsl(var(--primary) / 0.1) 0%,
+    hsl(var(--primary) / 0.1) 50%,
+    hsl(var(--primary) / 0.1) 100%
   );
 }
 
@@ -147,4 +161,22 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.3);
+}
+
+/* Optimize animations */
+@layer utilities {
+  .animate-once {
+    animation-iteration-count: 1;
+  }
+  
+  .will-change-transform {
+    will-change: transform;
+  }
+}
+
+/* Add print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
 }
