@@ -1,63 +1,24 @@
+import { notFound } from "next/navigation"
 import { DashboardLayout } from "@/components/dashboard/layout"
-import { InvestorDashboardContent } from "@/components/dashboard/investor/dashboard-content"
-import { FarmerDashboardContent } from "@/components/dashboard/farmer/dashboard-content"
-import { BusinessDashboardContent } from "@/components/dashboard/business/dashboard-content"
-import { StudentDashboardContent } from "@/components/dashboard/student/dashboard-content"
-import { AdminDashboardContent } from "@/components/dashboard/admin/dashboard-content"
-import { redirect } from "next/navigation"
-import { Metadata } from "next"
 
-const validRoles = ["investor", "farmer", "business", "student", "admin"] as const
+const validRoles = ["admin", "user", "manager"]
 
-const roleComponents = {
-  investor: InvestorDashboardContent,
-  farmer: FarmerDashboardContent,
-  business: BusinessDashboardContent,
-  student: StudentDashboardContent,
-  admin: AdminDashboardContent,
-}
-
-type Role = typeof validRoles[number]
-
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: { role: Role } 
-}): Promise<Metadata> {
-  const roleTitle = params.role.charAt(0).toUpperCase() + params.role.slice(1)
-  
-  return {
-    title: `${roleTitle} Dashboard - AgriFund`,
-    description: `Manage your ${params.role} activities and track your progress on AgriFund`,
+export default function DashboardPage({ params }: { params: { role: string } }) {
+  if (!validRoles.includes(params.role)) {
+    notFound()
   }
-}
-
-interface DashboardPageProps {
-  params: {
-    role: string
-  }
-}
-
-export default async function DashboardPage({ params: { role } }: DashboardPageProps) {
-  if (!validRoles.includes(role as Role)) {
-    redirect("/get-started")
-  }
-
-  const DashboardContent = roleComponents[role as keyof typeof roleComponents]
 
   return (
-    <DashboardLayout userType={role}>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            Welcome to your {role.charAt(0).toUpperCase() + role.slice(1)} Dashboard
-          </h1>
-          <p className="text-muted-foreground">
-            Manage your {role} activities and track your progress
-          </p>
-        </div>
-        <DashboardContent />
+    <DashboardLayout userType={params.role}>
+      <div className="container mx-auto px-6 py-8">
+        <h1 className="text-3xl font-bold">{params.role.charAt(0).toUpperCase() + params.role.slice(1)} Dashboard</h1>
       </div>
     </DashboardLayout>
   )
+}
+
+export async function generateStaticParams() {
+  return validRoles.map((role) => ({
+    role: role,
+  }))
 } 
