@@ -7,7 +7,7 @@ import {
   BookOpen, 
   Bell, 
   FileText,
-  Plant,
+  Leaf,
   CloudSun,
   Sprout
 } from "lucide-react"
@@ -29,7 +29,7 @@ const metrics = [
     title: "Crop Performance",
     value: "92%",
     change: "+5.2%",
-    icon: Plant,
+    icon: Leaf,
   },
   {
     title: "Active Loans",
