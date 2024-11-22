@@ -1,17 +1,24 @@
+import { Metadata } from "next"
 import { DashboardLayout } from "@/components/dashboard/layout"
-import { SystemIntegrity } from "@/components/dashboard/admin/system-integrity"
+
+export const metadata: Metadata = {
+  title: "System Management",
+  description: "Monitor and manage system resources and performance",
+}
 
 export default function SystemPage() {
   return (
     <DashboardLayout userType="admin">
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">System Integrity</h1>
+      <div className="container mx-auto px-6 py-8 space-y-6">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-bold tracking-tight">System Management</h1>
           <p className="text-muted-foreground">
-            Monitor blockchain transactions and system health
+            Monitor and manage system resources and performance
           </p>
         </div>
-        <SystemIntegrity />
+        <div className="grid gap-6">
+          {/* Add your system management components here */}
+        </div>
       </div>
     </DashboardLayout>
   )
