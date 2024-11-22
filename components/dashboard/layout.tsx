@@ -28,7 +28,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePathname, useRouter } from "next/navigation"
-import { adminNavItems } from "./admin/nav-items"
+
 
 export function DashboardLayout({
   children,
@@ -179,15 +179,7 @@ export function DashboardLayout({
                   </SidebarLink>
                 </>
               )}
-              {userType === 'admin' && (
-                <>
-                  {adminNavItems.map((item) => (
-                    <SidebarLink key={item.href} icon={item.icon} href={item.href}>
-                      {item.title}
-                    </SidebarLink>
-                  ))}
-                </>
-              )}
+              
             </nav>
           </div>
         </aside>

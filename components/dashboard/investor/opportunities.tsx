@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+
 
 interface LoanOpportunity {
   id: string
@@ -66,7 +66,6 @@ export function LoanOpportunities() {
                 <span>Progress</span>
                 <span>{opportunity.funded}%</span>
               </div>
-              <Progress value={opportunity.funded} />
             </div>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>

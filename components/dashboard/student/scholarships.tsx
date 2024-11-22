@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { GraduationCap, Calendar, Clock, Info } from "lucide-react"
 import {
@@ -66,7 +65,6 @@ export function StudentScholarships() {
                   <span>Disbursement Progress</span>
                   <span>$6,000 / $12,000</span>
                 </div>
-                <Progress value={50} />
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>Next Disbursement: May 1, 2024</span>
                   <span>Remaining: $6,000</span>

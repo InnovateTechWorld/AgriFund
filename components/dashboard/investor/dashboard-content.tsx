@@ -15,7 +15,6 @@ import { MetricsCard } from "@/components/dashboard/metrics-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { LoanCard } from "./loan-card"
-import { Progress } from "@/components/ui/progress"
 import {
   Tabs,
   TabsContent,

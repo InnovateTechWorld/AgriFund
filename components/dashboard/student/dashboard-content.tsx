@@ -5,7 +5,6 @@ import { GraduationCap, Book, Calendar, Award, Users, FileText, Bell } from "luc
 import { MetricsCard } from "@/components/dashboard/metrics-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import Link from "next/link"
 
 const dummyEducationResources = [

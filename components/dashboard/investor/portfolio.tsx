@@ -12,7 +12,6 @@ import {
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
 
@@ -104,7 +103,6 @@ export function InvestorPortfolio() {
                           <span>Investment Progress</span>
                           <span>${loan.investedAmount} / ${loan.totalAmount}</span>
                         </div>
-                        <Progress value={(loan.investedAmount / loan.totalAmount) * 100} />
                       </div>
                       <div className="flex items-center gap-2 text-sm">
                         <span>Next Payment:</span>

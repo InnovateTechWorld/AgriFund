@@ -53,3 +53,8 @@ module.exports = {
     ]
   }
 }
+module.exports = {
+  experimental: {
+    optimizeCss: false, // Disable CSS optimization
+  },
+};

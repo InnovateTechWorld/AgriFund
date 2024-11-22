@@ -6,7 +6,6 @@ import { Search, Star, TrendingUp, History } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
 import {
   Select,
   SelectContent,
@@ -61,7 +60,6 @@ function FarmerCoinCard({ coin }: { coin: typeof allFarmerCoins[0] }) {
               <span>Available for Investment</span>
               <span>${coin.available.toLocaleString()} / ${coin.totalValue.toLocaleString()}</span>
             </div>
-            <Progress value={(coin.available / coin.totalValue) * 100} className="h-2" />
           </div>
           
           <div className="grid grid-cols-2 gap-4 text-sm">

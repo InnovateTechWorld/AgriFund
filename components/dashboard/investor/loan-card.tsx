@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+
 import {
   Dialog,
   DialogContent,
@@ -56,7 +56,6 @@ export function LoanCard({ loan }: { loan: LoanRequest }) {
               <span>Progress</span>
               <span>${loan.funded} of ${loan.amount}</span>
             </div>
-            <Progress value={progress} className="h-2" />
           </div>
           
           <div className="grid grid-cols-2 gap-4 text-sm">

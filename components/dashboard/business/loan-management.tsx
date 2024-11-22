@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FileText, DollarSign, Calendar } from "lucide-react"
 
@@ -45,7 +44,7 @@ export function BusinessLoanManagement() {
                 <span>Repayment Progress</span>
                 <span>65%</span>
               </div>
-              <Progress value={65} />
+              
             </div>
 
             <div className="space-y-2">

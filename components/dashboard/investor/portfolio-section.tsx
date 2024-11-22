@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+
 import { Button } from "@/components/ui/button"
 import { TrendingUp, TrendingDown, Clock, Info } from "lucide-react"
 import {
@@ -80,7 +80,6 @@ export function PortfolioSection() {
                   <p className="text-sm text-muted-foreground">Last updated {coin.lastUpdate}</p>
                 </div>
               </div>
-              <Progress value={coin.performance} className="h-2" />
             </div>
           ))}
         </CardContent>
@@ -124,7 +123,7 @@ export function PortfolioSection() {
                   <span>Progress</span>
                   <span>${loan.amount.toLocaleString()}</span>
                 </div>
-                <Progress value={70} className="h-2" />
+
               </div>
             </div>
           ))}

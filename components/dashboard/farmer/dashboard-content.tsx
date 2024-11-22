@@ -5,7 +5,6 @@ import { Coins, TrendingUp, BookOpen, Bell, FileText } from "lucide-react"
 import { MetricsCard } from "@/components/dashboard/metrics-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import Link from "next/link"
 
 export function FarmerDashboardContent() {
@@ -66,7 +65,7 @@ export function FarmerDashboardContent() {
                   <span className="text-sm font-medium">Current Loan</span>
                   <span className="text-sm text-muted-foreground">$12,000</span>
                 </div>
-                <Progress value={75} />
+              
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <span>Paid: $9,000</span>
                   <span>Remaining: $3,000</span>
