@@ -1,111 +1,134 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { 
-  Coins, 
-  TrendingUp, 
-  BookOpen, 
-  Bell, 
-  FileText,
-  Leaf,
-  CloudSun,
-  Sprout
-} from "lucide-react"
+import { Coins, TrendingUp, BookOpen, Bell, FileText } from "lucide-react"
 import { MetricsCard } from "@/components/dashboard/metrics-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { FarmerCoinInsights } from "./coin-insights"
 import Link from "next/link"
 
-const metrics = [
-  {
-    title: "Farm Value",
-    value: "$125,000",
-    change: "+12.5%",
-    icon: Coins,
-  },
-  {
-    title: "Crop Performance",
-    value: "92%",
-    change: "+5.2%",
-    icon: Leaf,
-  },
-  {
-    title: "Active Loans",
-    value: "2",
-    change: "Healthy",
-    icon: FileText,
-  },
-  {
-    title: "Weather Index",
-    value: "Favorable",
-    change: "Next 7 days",
-    icon: CloudSun,
-  },
-]
-
 export function FarmerDashboardContent() {
+  const dummyEducationResources = [
+    { title: "Maximizing Crop Yield", type: "Video", duration: "15 mins" },
+    { title: "Financial Management for Farmers", type: "Article", duration: "10 mins" },
+    { title: "Sustainable Farming Practices", type: "Course", duration: "2 hours" },
+  ]
+
+  const notifications = [
+    { message: "Upcoming payment due in 15 days", type: "payment" },
+    { message: "Your Farmer Coin value increased by 5%", type: "coin" },
+    { message: "New farming technique guide available", type: "education" },
+  ]
+
   return (
     <div className="space-y-8">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {metrics.map((metric, i) => (
-          <motion.div
-            key={metric.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-          >
-            <MetricsCard {...metric} />
-          </motion.div>
-        ))}
+      <div className="flex justify-end">
+        <Link href="/dashboard/farmer/loan-application">
+          <Button size="lg" className="gap-2">
+            <FileText className="h-4 w-4" />
+            Apply for New Loan
+          </Button>
+        </Link>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <MetricsCard
+          title="Loan Status"
+          value="75% Paid"
+          icon={Coins}
+          description="Next payment due in 15 days"
+        />
+        <MetricsCard
+          title="Farmer Coin Status"
+          value="92 FCP"
+          icon={TrendingUp}
+          description="Performance score: 92/100"
+          trend={{ value: 5, label: "vs last month" }}
+        />
+        <MetricsCard
+          title="Educational Progress"
+          value="3 Courses"
+          icon={BookOpen}
+          description="2 certificates earned"
+        />
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Crop Management</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Sprout className="h-4 w-4 text-primary" />
-                  <span className="font-medium">Corn</span>
-                </div>
-                <span className="text-sm text-muted-foreground">Stage: Growing</span>
-              </div>
-              <Progress value={75} className="h-2" />
-              <p className="text-sm text-muted-foreground">Expected harvest: 45 days</p>
-            </div>
-            
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Sprout className="h-4 w-4 text-primary" />
-                  <span className="font-medium">Soybeans</span>
-                </div>
-                <span className="text-sm text-muted-foreground">Stage: Planting</span>
-              </div>
-              <Progress value={15} className="h-2" />
-              <p className="text-sm text-muted-foreground">Expected harvest: 90 days</p>
-            </div>
-
-            <Button className="w-full" asChild>
-              <Link href="/dashboard/farmer/crops">Manage Crops</Link>
-            </Button>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Farmer Coin Performance</CardTitle>
+            <CardTitle>Loan Repayment Progress</CardTitle>
           </CardHeader>
           <CardContent>
-            <FarmerCoinInsights />
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">Current Loan</span>
+                  <span className="text-sm text-muted-foreground">$12,000</span>
+                </div>
+                <Progress value={75} />
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>Paid: $9,000</span>
+                  <span>Remaining: $3,000</span>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h4 className="text-sm font-medium">Payment History</h4>
+                <div className="space-y-2">
+                  {[
+                    { date: "2024-03-01", amount: 1000 },
+                    { date: "2024-02-01", amount: 1000 },
+                    { date: "2024-01-01", amount: 1000 },
+                  ].map((payment, i) => (
+                    <div key={i} className="flex justify-between text-sm">
+                      <span>{payment.date}</span>
+                      <span>${payment.amount}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Education & Resources</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {dummyEducationResources.map((resource, i) => (
+                <div key={i} className="flex items-center justify-between p-4 border rounded-lg">
+                  <div>
+                    <h4 className="font-semibold">{resource.title}</h4>
+                    <p className="text-sm text-muted-foreground">{resource.type} • {resource.duration}</p>
+                  </div>
+                  <Button variant="outline" size="sm">Start</Button>
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Recent Notifications</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {notifications.map((notification, i) => (
+              <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
+                <Bell className={`h-5 w-5 ${
+                  notification.type === 'payment' ? 'text-yellow-500' :
+                  notification.type === 'coin' ? 'text-green-500' : 'text-blue-500'
+                }`} />
+                <p className="text-sm">{notification.message}</p>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 } 
