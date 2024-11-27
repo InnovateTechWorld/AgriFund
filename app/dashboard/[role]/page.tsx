@@ -5,6 +5,7 @@ import { BusinessDashboardContent } from "@/components/dashboard/business/dashbo
 import { StudentDashboardContent } from "@/components/dashboard/student/dashboard-content";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const validRoles = ["investor", "farmer", "business", "student"] as const;
 
@@ -39,18 +40,20 @@ export default async function DashboardPage({ params: { role } }: DashboardPageP
   }
 
   return (
-    <DashboardLayout userType={role}>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            Welcome to your {role.charAt(0).toUpperCase() + role.slice(1)} Dashboard
-          </h1>
-          <p className="text-muted-foreground">
-            Manage your {role} activities and track your progress.
-          </p>
+    <ProtectedRoute redirectTo="/">
+      <DashboardLayout userType={role}>
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">
+              Welcome to your {role.charAt(0).toUpperCase() + role.slice(1)} Dashboard
+            </h1>
+            <p className="text-muted-foreground">
+              Manage your {role} activities and track your progress.
+            </p>
+          </div>
+          <DashboardContent />
         </div>
-        <DashboardContent />
-      </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </ProtectedRoute>
   );
 }
