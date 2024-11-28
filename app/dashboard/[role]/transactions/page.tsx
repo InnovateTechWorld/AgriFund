@@ -1,5 +1,6 @@
 import { DashboardLayout } from "@/components/dashboard/layout"
 import { TransactionsTable } from "@/components/dashboard/transactions/transactions-table"
+import ProtectedRoute from "@/components/ProtectedRoute"
 import { redirect } from "next/navigation"
 
 const validRoles = ["investor", "farmer", "business", "student", "admin"] as const
@@ -135,16 +136,18 @@ export default function TransactionsPage({
   const transactions = transactionsByRole[role as Role]
 
   return (
-    <DashboardLayout userType={role}>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Transactions</h1>
-          <p className="text-muted-foreground">
-            View and manage your transaction history
-          </p>
+    <ProtectedRoute redirectTo="/">
+      <DashboardLayout userType={role}>
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Transactions</h1>
+            <p className="text-muted-foreground">
+              View and manage your transaction history
+            </p>
+          </div>
+          <TransactionsTable transactions={transactions} userType={role} />
         </div>
-        <TransactionsTable transactions={transactions} userType={role} />
-      </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </ProtectedRoute>
   )
 } 

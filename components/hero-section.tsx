@@ -35,7 +35,7 @@ export function HeroSection() {
               AgriFund connects farmers, businesses, and students with the financial support they need through blockchain-powered loans, community investments, and educational scholarships.
             </p>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
-              <Link href="/get-started">
+              <Link href="/signup">
                 <Button size="lg" className="gap-2">
                   Get Started
                   <ArrowRight className="h-4 w-4" />
