@@ -33,7 +33,6 @@ export async function signInWithGoogle() {
         let result = await signInWithPopup(auth, provider);  //sign in with popup
         user = result.user;
         console.log('Signed in user:', user);
-
     } catch (e) {
         console.error(e);
         console.log(e);
