@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { 
-  Bell, 
-  Settings, 
-  LogOut, 
+import {
+  Bell,
+  Settings,
+  LogOut,
   Menu,
   X,
   Home,
@@ -28,6 +28,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePathname, useRouter } from "next/navigation"
+import signOut from "@/firebase/auth/signout"
 
 
 export function DashboardLayout({
@@ -46,9 +47,12 @@ export function DashboardLayout({
     setSidebarOpen(false)
   }, [pathname])
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     // Add any logout logic here (e.g., clearing tokens/session)
-    router.push("/get-started")
+    let result = await signOut()
+    // console.log(result);
+    
+    router.push("/")
   }
 
   return (
@@ -64,7 +68,7 @@ export function DashboardLayout({
           >
             {sidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
-          
+
           <div className="flex-1">
             <Link href="/dashboard" className="text-xl font-bold text-primary">
               AgriFund
@@ -78,7 +82,7 @@ export function DashboardLayout({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
-                  <Settings className="h-5 w-5" />
+                  <User className="mr-2 h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -90,8 +94,8 @@ export function DashboardLayout({
                   <Settings className="mr-2 h-4 w-4" />
                   Settings
                 </DropdownMenuItem>
-                <DropdownMenuItem 
-                  className="text-destructive"
+                <DropdownMenuItem
+                  // className="text-destructive"
                   onClick={handleLogout}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
@@ -106,7 +110,7 @@ export function DashboardLayout({
       <div className="flex min-h-[calc(100vh-4rem)]">
         {/* Overlay for mobile */}
         {sidebarOpen && (
-          <div 
+          <div
             className="fixed inset-0 bg-background/80 backdrop-blur-sm z-30 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
@@ -114,19 +118,18 @@ export function DashboardLayout({
 
         {/* Sidebar */}
         <aside
-          className={`fixed md:sticky top-16 z-40 w-64 shrink-0 border-r bg-card/50 backdrop-blur-lg h-[calc(100vh-4rem)] transition-transform duration-200 ${
-            sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-          }`}
+          className={`fixed md:sticky top-16 z-40 w-64 shrink-0 border-r bg-card/50 backdrop-blur-lg h-[calc(100vh-4rem)] transition-transform duration-200 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+            }`}
         >
           <div className="flex flex-col h-full p-4">
-            <Link 
+            <Link
               href="/"
               className="flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Home
             </Link>
-            
+
             <nav className="space-y-2">
               <SidebarLink icon={Home} href={`/dashboard/${userType}`}>
                 Dashboard
@@ -179,7 +182,7 @@ export function DashboardLayout({
                   </SidebarLink>
                 </>
               )}
-              
+
             </nav>
           </div>
         </aside>
@@ -195,14 +198,14 @@ export function DashboardLayout({
   )
 }
 
-function SidebarLink({ 
-  children, 
-  icon: Icon, 
-  href 
-}: { 
+function SidebarLink({
+  children,
+  icon: Icon,
+  href
+}: {
   children: React.ReactNode
   icon: any
-  href: string 
+  href: string
 }) {
   const pathname = usePathname()
   const isActive = pathname === href
@@ -210,11 +213,10 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-        isActive 
-          ? "bg-primary text-primary-foreground" 
+      className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${isActive
+          ? "bg-primary text-primary-foreground"
           : "hover:bg-accent text-muted-foreground hover:text-foreground"
-      }`}
+        }`}
     >
       <Icon className="h-5 w-5" />
       <span>{children}</span>

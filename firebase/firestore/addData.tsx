@@ -1,7 +1,7 @@
 import firebase_app from "../config";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, updateDoc } from "firebase/firestore";
 
-const db = getFirestore(firebase_app)
+const db = getFirestore(firebase_app);
 export default async function addData(colllection: string, id: string, data: any) {
     let result = null;
     let error = null;
@@ -16,6 +16,16 @@ export default async function addData(colllection: string, id: string, data: any
 
     return { result, error };
 }
+
+export const updateUserData = async (collection: string, docId: string, updatedData: any) => {
+    try {
+      const docRef = doc(db, collection, docId);
+      await updateDoc(docRef, updatedData);
+    //   console.log("Document updated successfully!");
+    } catch (error) {
+      console.error("Error updating document:", error);
+    }
+  };
 
 // how to use the addData
 // 'use client'
