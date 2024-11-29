@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
+import { updateUserData } from "@/firebase/firestore/addData"
+import { useAuthContext } from "@/context/AuthContext"
 
 const roles = [
   {
@@ -44,10 +46,18 @@ const roles = [
 
 export function RoleSelectionForm() {
   const [selectedRole, setSelectedRole] = useState<string>("")
+  const { user } = useAuthContext();
   const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    try {
+      await updateUserData('users', `${user?.uid}`, { role: selectedRole });
+    } catch (e) {
+      console.error(e)
+    }
+
     if (selectedRole) {
       router.push(`/dashboard/${selectedRole}`)
     }

@@ -2,6 +2,9 @@
 
 import React from 'react';
 import { useAuthContext } from '@/context/AuthContext';
+import { FileWarningIcon } from 'lucide-react';
+import Loader from './ui/loader/loader';
+import ErrorPage from './ui/errorPage';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -16,7 +19,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, redirectTo = 
   }
 
   if (!user) {
-    return <div>You are not logged in!</div>;
+    ErrorPage('You are not logged in!', true, 'Login')
   }
 
   // console.log('Authenticated user:', user);
