@@ -28,7 +28,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePathname, useRouter } from "next/navigation"
-import ChatBot from "@/components/ChatBot"
 
 
 export function DashboardLayout({
@@ -192,7 +191,6 @@ export function DashboardLayout({
           </div>
         </main>
       </div>
-      <ChatBot />
     </div>
   )
 }
