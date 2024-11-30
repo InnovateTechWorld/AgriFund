@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { usePathname, useRouter } from "next/navigation"
 import signOut from "@/firebase/auth/signout"
+import ChatBot from "@/components/ChatBot"
 
 
 export function DashboardLayout({
@@ -200,6 +201,9 @@ export function DashboardLayout({
             {children}
           </div>
         </main>
+        <div className="relative">
+          <ChatBot />
+        </div>
       </div>
     </div>
   )
@@ -229,4 +233,4 @@ function SidebarLink({
       <span>{children}</span>
     </Link>
   )
-} 
+}
