@@ -42,6 +42,11 @@ export function Nav({ className, ...props }: NavProps) {
       label: "Coin Insights",
       icon: LineChart,
     },
+    {
+      href: `/posts/:id`,
+      label: "View Article/Blog",
+      icon: "",
+    },
   ]
 
   const investorRoutes = [
@@ -115,7 +120,12 @@ export function Nav({ className, ...props }: NavProps) {
       href: "/dashboard/student/community",
       label: "Community",
       icon: Users,
-    }
+    },
+    {
+      href: `/posts/:id`,
+      label: "View Article/Blog",
+      icon: "",
+    },
   ]
 
   const routes = pathname.includes('/dashboard/student')

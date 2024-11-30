@@ -42,6 +42,14 @@ const securityHeaders = [
   }
 ]
 
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+});
+
+module.exports = withMDX({
+  pageExtensions: ['js', 'jsx', 'mdx'], // Allow MDX files as page components
+});
+
 module.exports = {
   ...nextConfig,
   async headers() {
