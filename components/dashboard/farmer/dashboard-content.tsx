@@ -1,5 +1,3 @@
-"use client"
-
 import { motion } from "framer-motion"
 import { Coins, TrendingUp, BookOpen, Bell, FileText } from "lucide-react"
 import { MetricsCard } from "@/components/dashboard/metrics-card"
@@ -9,9 +7,10 @@ import Link from "next/link"
 
 export function FarmerDashboardContent() {
   const dummyEducationResources = [
-    { title: "Maximizing Crop Yield", type: "Video", duration: "15 mins" },
-    { title: "Financial Management for Farmers", type: "Article", duration: "10 mins" },
-    { title: "Sustainable Farming Practices", type: "Course", duration: "2 hours" },
+    { title: "Maximizing Crop Yield", type: "Video", duration: "15 mins", fileName: "MaximizingCropYield" },
+    { title: "Maximizing Crop Yield", type: "Article", duration: "15 mins", fileName: "MaximizingCropYield" },
+    { title: "Financial Management for Farmers", type: "Article", duration: "10 mins", fileName: "FinancialManagementforFarmers" },
+    { title: "Sustainable Farming Practices", type: "Course", duration: "2 hours", fileName: "" },
   ]
 
   const notifications = [
@@ -65,7 +64,7 @@ export function FarmerDashboardContent() {
                   <span className="text-sm font-medium">Current Loan</span>
                   <span className="text-sm text-muted-foreground">$12,000</span>
                 </div>
-              
+
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <span>Paid: $9,000</span>
                   <span>Remaining: $3,000</span>
@@ -97,13 +96,32 @@ export function FarmerDashboardContent() {
           <CardContent>
             <div className="space-y-4">
               {dummyEducationResources.map((resource, i) => (
-                <div key={i} className="flex items-center justify-between p-4 border rounded-lg">
-                  <div>
-                    <h4 className="font-semibold">{resource.title}</h4>
-                    <p className="text-sm text-muted-foreground">{resource.type} • {resource.duration}</p>
+
+                resource.type == 'Article' ?
+                  <div key={i} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div>
+                      <h4 className="font-semibold">{resource.title}</h4>
+                      <p className="text-sm text-muted-foreground">{resource.type} • {resource.duration}</p>
+                    </div>
+                    {/* <Button onClick={() => onClickArticle(resource.fileName)} variant="outline" size="sm"></Button> */}
+                    <Link href={`/dashboard/posts/${resource.fileName}`}>
+                      <Button size="lg" className="gap-2">
+                        Start
+                      </Button>
+                    </Link>
+                  </div> :
+                  <div key={i} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div>
+                      <h4 className="font-semibold">{resource.title}</h4>
+                      <p className="text-sm text-muted-foreground">{resource.type} • {resource.duration}</p>
+                    </div>
+                    {/* <Button variant="outline" size="sm">Start</Button> */}
+                    <Link href="#">
+                      <Button size="lg" className="gap-2">
+                        Start
+                      </Button>
+                    </Link>
                   </div>
-                  <Button variant="outline" size="sm">Start</Button>
-                </div>
               ))}
             </div>
           </CardContent>
@@ -118,10 +136,9 @@ export function FarmerDashboardContent() {
           <div className="space-y-4">
             {notifications.map((notification, i) => (
               <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
-                <Bell className={`h-5 w-5 ${
-                  notification.type === 'payment' ? 'text-yellow-500' :
+                <Bell className={`h-5 w-5 ${notification.type === 'payment' ? 'text-yellow-500' :
                   notification.type === 'coin' ? 'text-green-500' : 'text-blue-500'
-                }`} />
+                  }`} />
                 <p className="text-sm">{notification.message}</p>
               </div>
             ))}

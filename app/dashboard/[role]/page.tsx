@@ -1,3 +1,5 @@
+"use client"
+
 import { DashboardLayout } from "@/components/dashboard/layout";
 import { InvestorDashboardContent } from "@/components/dashboard/investor/dashboard-content";
 import { FarmerDashboardContent } from "@/components/dashboard/farmer/dashboard-content";

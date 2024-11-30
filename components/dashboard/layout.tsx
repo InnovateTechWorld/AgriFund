@@ -52,7 +52,7 @@ export function DashboardLayout({
     // Add any logout logic here (e.g., clearing tokens/session)
     let result = await signOut()
     // console.log(result);
-    
+
     router.push("/")
   }
 
@@ -183,6 +183,13 @@ export function DashboardLayout({
                   </SidebarLink>
                 </>
               )}
+              {userType === 'farmer' && (
+                <>
+                  <SidebarLink icon={Store} href={`/dashboard/${userType}/marketplace`}>
+                    Marketplace
+                  </SidebarLink>
+                </>
+              )}
 
             </nav>
           </div>
@@ -218,8 +225,8 @@ function SidebarLink({
     <Link
       href={href}
       className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${isActive
-          ? "bg-primary text-primary-foreground"
-          : "hover:bg-accent text-muted-foreground hover:text-foreground"
+        ? "bg-primary text-primary-foreground"
+        : "hover:bg-accent text-muted-foreground hover:text-foreground"
         }`}
     >
       <Icon className="h-5 w-5" />

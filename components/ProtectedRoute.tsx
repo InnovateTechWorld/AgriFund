@@ -5,6 +5,7 @@ import { useAuthContext } from '@/context/AuthContext';
 import { FileWarningIcon } from 'lucide-react';
 import Loader from './ui/loader/loader';
 import ErrorPage from './ui/errorPage';
+import Loading from './ui/loading';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -15,7 +16,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, redirectTo = 
   const { user, loading } = useAuthContext();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return Loading('Loading...', false)
   }
 
   if (!user) {
