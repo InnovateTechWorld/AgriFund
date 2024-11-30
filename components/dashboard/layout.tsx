@@ -137,9 +137,6 @@ export function DashboardLayout({
               <SidebarLink icon={FileText} href={`/dashboard/${userType}/transactions`}>
                 Transactions
               </SidebarLink>
-              <SidebarLink icon={Store} href={`/dashboard/${userType}/marketplace`}>
-                Marketplace
-              </SidebarLink>
               {userType === 'investor' && (
                 <>
                   <SidebarLink icon={FileText} href={`/dashboard/${userType}/opportunities`}>
@@ -182,6 +179,13 @@ export function DashboardLayout({
                   </SidebarLink>
                   <SidebarLink icon={FileText} href={`/dashboard/${userType}/loans`}>
                     Loans
+                  </SidebarLink>
+                </>
+              )}
+              {userType === 'farmer' && (
+                <>
+                  <SidebarLink icon={Store} href={`/dashboard/${userType}/marketplace`}>
+                    Marketplace
                   </SidebarLink>
                 </>
               )}

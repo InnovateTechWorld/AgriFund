@@ -28,6 +28,11 @@ export function Nav({ className, ...props }: NavProps) {
       icon: LayoutDashboard,
     },
     {
+      href: "/dashboard/farmer/marketplace",
+      label: "Marketplace",
+      icon: Store,
+    },
+    {
       href: "/dashboard/farmer/loan-application",
       label: "Apply for Loan",
       icon: FileText,
@@ -36,11 +41,6 @@ export function Nav({ className, ...props }: NavProps) {
       href: "/dashboard/farmer/coin-insights",
       label: "Coin Insights",
       icon: LineChart,
-    },
-    {
-      href: "/dashboard/farmer/marketplace",
-      label: "Marketplace",
-      icon: Store,
     },
   ]
 

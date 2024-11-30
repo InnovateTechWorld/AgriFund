@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-const farmers = [
+const business = [
   {
     id: 1,
     name: "One Stop shop for Fertilizer Spreaders, Sprayers, and Seeders",
@@ -28,7 +28,13 @@ const farmers = [
     products: ["Fertilizers", "seeds"],
     rating: 4.8,
     distance: "15 miles",
-    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop",
+    contact: {
+      ownerName: "Ayomide Badejo",
+      phoneNumber: "08126573569",
+      email: "ayomidebadejo@gmail.com",
+      profileImage: ""
+    }
   },
   {
     id: 2,
@@ -37,7 +43,13 @@ const farmers = [
     products: ["tractors", "Rakes"],
     rating: 4.6,
     distance: "8 miles",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop",
+    contact: {
+      ownerName: "Ayomide Badejo",
+      phoneNumber: "08126573569",
+      email: "ayomidebadejo@gmail.com",
+      profileImage: ""
+    }
   },
   {
     id: 3,
@@ -46,11 +58,17 @@ const farmers = [
     products: ["Grains", "Vegetables"],
     rating: 4.9,
     distance: "20 miles",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop",
+    contact: {
+      ownerName: "Ayomide Badejo",
+      phoneNumber: "08126573569",
+      email: "ayomidebadejo@gmail.com",
+      profileImage: ""
+    }
   }
 ]
 
-export function FarmerMarketplace() {
+export function FarmersMarketplace() {
   const [searchTerm, setSearchTerm] = useState("")
 
   return (
@@ -60,7 +78,7 @@ export function FarmerMarketplace() {
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search farmers or products..."
+            placeholder="Search business or products..."
             className="pl-9"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -83,10 +101,10 @@ export function FarmerMarketplace() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Products</SelectItem>
-              <SelectItem value="vegetables">Vegetables</SelectItem>
-              <SelectItem value="fruits">Fruits</SelectItem>
-              <SelectItem value="dairy">Dairy</SelectItem>
-              <SelectItem value="poultry">Poultry</SelectItem>
+              <SelectItem value="vegetables">Tractors</SelectItem>
+              <SelectItem value="fruits">Fertilizers</SelectItem>
+              <SelectItem value="dairy">Seedlings</SelectItem>
+              <SelectItem value="poultry">Tools</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -94,31 +112,31 @@ export function FarmerMarketplace() {
 
       {/* Farmer Listings */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {farmers.map((farmer) => (
-          <Card key={farmer.id} className="overflow-hidden">
+        {business.map((business) => (
+          <Card key={business.id} className="overflow-hidden">
             <div 
               className="h-48 bg-cover bg-center" 
-              style={{ backgroundImage: `url(${farmer.image})` }}
+              style={{ backgroundImage: `url(${business.image})` }}
             />
             <CardContent className="p-6">
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-lg">{farmer.name}</h3>
+                  <h3 className="font-semibold text-lg">{business.name}</h3>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <MapPin className="h-4 w-4" />
-                    <span>{farmer.location}</span>
+                    <span>{business.location}</span>
                     <span>•</span>
-                    <span>{farmer.distance}</span>
+                    <span>{business.distance}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-primary text-primary" />
-                  <span className="font-medium">{farmer.rating}</span>
+                  <span className="font-medium">{business.rating}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {farmer.products.map((product, i) => (
+                  {business.products.map((product, i) => (
                     <span 
                       key={i}
                       className="px-2.5 py-0.5 text-sm bg-primary/10 text-primary rounded-full"
