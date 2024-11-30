@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import Link from "next/link"
 
 
 interface LoanOpportunity {
@@ -79,7 +80,13 @@ export function LoanOpportunities() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full">Invest Now</Button>
+            {/* <Button className="w-full">Invest Now</Button> */}
+            <Link href="https://sui-investment.vercel.app/">
+              <Button size="lg" className="gap-2">
+                Invest Now
+              </Button>
+            </Link>
+
           </CardFooter>
         </Card>
       ))}
