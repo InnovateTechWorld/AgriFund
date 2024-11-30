@@ -3,6 +3,11 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { AuthContextProvider } from '@/context/AuthContext';
+import dynamic from 'next/dynamic';
+
+const ChatBot = dynamic(() => import('@/components/ChatBot'), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,9 +32,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <ChatBot />
           </ThemeProvider>
         </AuthContextProvider>
-
       </body>
     </html>
   );
