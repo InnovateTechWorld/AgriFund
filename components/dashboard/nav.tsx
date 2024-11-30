@@ -37,6 +37,11 @@ export function Nav({ className, ...props }: NavProps) {
       label: "Coin Insights",
       icon: LineChart,
     },
+    {
+      href: "/dashboard/farmer/marketplace",
+      label: "Marketplace",
+      icon: Store,
+    },
   ]
 
   const investorRoutes = [
